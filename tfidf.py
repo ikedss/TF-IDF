@@ -21,8 +21,8 @@ def adiciona_site(site, lsentencas):
     soap = BeautifulSoup(html.content, 'html.parser')
     text = soap.get_text()
     token = re.findall('\w+', text)
-
-    for palavra in token:
+    # O Colab não consegue rodar com todas as palavras, então tive que limitar a lista
+    for palavra in token[:1000]:
       lsentencas.append(palavra.lower())
     return lsentencas
 
