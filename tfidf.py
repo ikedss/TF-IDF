@@ -21,13 +21,10 @@ def adiciona_site(site, lsentencas):
     soap = BeautifulSoup(html.content, 'html.parser')
     text = soap.get_text()
     token = re.findall('\w+', text)
-    pontuacao = ['(', ')', '.', ',', ';', ':', '!', '?','...', '"', '“', '”', '—', '-']
 
     for palavra in token:
-        if palavra not in pontuacao:
-            lsentencas.append(palavra.lower())
+      lsentencas.append(palavra.lower())
     return lsentencas
-
 
 lsentencas = []
 sentencas1 = adiciona_site("https://en.wikipedia.org/wiki/Natural_language_processing", lsentencas)
