@@ -19,11 +19,13 @@ nlp = spacy.load("en_core_web_sm")
 def adiciona_site(site, lsentencas):
     html = requests.get(site)
     soap = BeautifulSoup(html.content, 'html.parser')
-    text=soap.get_text()
-    token=re.findall('\w+', text)
+    text = soap.get_text()
+    token = re.findall('\w+', text)
+    pontuacao = ['(', ')', '.', ',', ';', ':', '!', '?','...', '"', '“', '”', '—', '-']
 
-    for word in token:
-      lsentencas.append(word.lower())
+    for palavra in token:
+        if palavra not in pontuacao:
+            lsentencas.append(palavra.lower())
     return lsentencas
 
 
